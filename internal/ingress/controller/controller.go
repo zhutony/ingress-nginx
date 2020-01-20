@@ -1059,6 +1059,7 @@ func (n *NGINXController) createServers(data []*ingress.Ingress,
 				},
 				SSLPassthrough: anns.SSLPassthrough,
 				SSLCiphers:     anns.SSLCiphers,
+				Nickname:       anns.Nickname,
 			}
 		}
 	}

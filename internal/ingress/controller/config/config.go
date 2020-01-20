@@ -644,6 +644,9 @@ type Configuration struct {
 	// DefaultSSLCertificate holds the default SSL certificate to use in the configuration
 	// It can be the fake certificate or the one behind the flag --default-ssl-certificate
 	DefaultSSLCertificate *ingress.SSLCert `json:"-"`
+
+	// Enables /hello on the default server
+	HelloKubeCon bool `json:"hello-kubecon"`
 }
 
 // NewDefault returns the default nginx configuration
@@ -786,6 +789,7 @@ func NewDefault() Configuration {
 		NoTLSRedirectLocations:       "/.well-known/acme-challenge",
 		NoAuthLocations:              "/.well-known/acme-challenge",
 		GlobalExternalAuth:           defGlobalExternalAuth,
+		HelloKubeCon:                 false,
 	}
 
 	if klog.V(5) {
@@ -815,6 +819,7 @@ type TemplateConfig struct {
 	ListenPorts              *ListenPorts
 	PublishService           *apiv1.Service
 	EnableMetrics            bool
+	HelloKubeCon             bool
 
 	PID        string
 	StatusPath string
